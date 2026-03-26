@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nazz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try {
+      const p = localStorage.getItem('ag_palette') || 'cosmic';
+      document.documentElement.setAttribute('data-palette', p);
+    } catch(e) {}
+  </script>
+</head>
+<body>
+  <div id="app">
+    <div id="view-container"></div>
+    <nav id="bottom-nav" class="bottom-nav hidden"></nav>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
