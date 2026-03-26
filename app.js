@@ -85,6 +85,7 @@ function showLogin() {
         <input id="l-email" type="email" placeholder="Tu correo" class="inp" autocomplete="email">
         <input id="l-pass" type="password" placeholder="Tu contraseña" class="inp" autocomplete="current-password">
         <button class="btn btn-grad" id="b-login" onclick="doLogin()">Entrar a mi Oficina</button>
+        <button class="btn" style="background:transparent;color:white;margin-top:12px;border:1px solid rgba(255,255,255,0.2);" id="b-register" onclick="doRegister()">Crear cuenta nueva</button>
       </div>
     </div>`;
 }
@@ -97,6 +98,22 @@ async function doLogin() {
   el('b-login').textContent = 'Entrando...';
   const { error } = await SB.auth.signInWithPassword({ email, password: pass });
   if (error) { alert('Error: ' + error.message); el('b-login').textContent = 'Entrar a mi Oficina'; }
+}
+
+async function doRegister() {
+  const email = el('l-email').value.trim();
+  const pass  = el('l-pass').value;
+  if (!email || !pass) { alert('Ingresa correo y contraseña para registrarte.'); return; }
+  if (pass.length < 6) { alert('La contraseña debe tener al menos 6 caracteres.'); return; }
+  el('b-register').textContent = 'Creando...';
+  const { error } = await SB.auth.signUp({ email, password: pass });
+  if (error) { 
+    alert('Error al crear cuenta: ' + error.message); 
+    el('b-register').textContent = 'Crear cuenta nueva'; 
+  } else { 
+    alert('¡Cuenta creada exitosamente! Ahora dale al botón de Entrar.'); 
+    el('b-register').textContent = 'Crear cuenta nueva'; 
+  }
 }
 
 // ── NAVIGATION ──
